@@ -1,7 +1,30 @@
 # Fatigue_Detection_Project
 Periodically captures the user's face and detects the level of fatigue using a CNN, then recommends a break accordingly.
 
-There are two tests used for classification: The full face detection using the CNN and eye detection from a short clip of the user. 
-The detection process begins by opening the webcam and capturing a 5 second video.  Each frame of the video is saved in a folder as an image.  While this video is being captured, eye detection is performed, which will produce an output of 1 for ‘tired’ or 0 for ‘not tired.’  After the video is captured, the face detection algorithm using the CNN is performed.  First, all the images taken from the video are stored in a list data structure.  Storing them in a list allows for easier iteration of each image.  Next, each image is loaded in, converted to an array and tested using the CNN.  Two variables store the count of ‘tired’ and ‘not tired’ predictions.  The count is increased for the variable representing the prediction of the current image.  After each image has been tested, the two variables will be compared.  If there were more ‘tired’ frames then ‘not tired’, then the final prediction for the video will be ‘tired’ and vice versa.  This final prediction is also stored in a variable as a 1 or 0.
+## Technologies Used
+- Python
+- TensorFlow
+- Keras
+- Jupyter Notebook
 
-These two tests will then be used to determine the tiredness level of the user.  If one test returned 1, then the user will be labeled as level 1 tired.  If both tests return 1, then the user is level 2 tired.  If neither test returns 1, then they are not tired.  The program will display a popup message informing the user of their level of tiredness and recommend a break, with the length determined by their level.  This process will repeat every 30 minutes until the exit button is pressed, which closes the window.
+## How It Works
+- Captures a 5 second video every 30 minutes
+- One algorithm determines length of time eyes are open and returns binary output of tiredness
+- Second algorithm runs CNN on each captured frame, then returns binary output of tiredness
+- Combines model outputs to determine overall fatigue level and recommend breaks of different lengths
+
+## Purpose
+Built as a senior computer science project focused on solving real world issues.  Our goal was to reduce burnout of at-home workers.
+
+## File Descriptions
+TiredDetectionFinal.ipynb - The main function of the project.  This file incorporates everything and displays the user interface.  
+It contains the functions for both tired detection tests.
+
+TiredDetectCNN.ipynb - The file where the CNN is created and trained.  This file contains the code to train the CNN and has it being 
+tested on a few images.  At the end of the file, the early stages of the webcam capture and eye detection can be seen.
+
+EyeDetectionDemo.ipynb - The code used to detect the user's eyes from the webcam.  This is the original version of this code that 
+still contains the window displaying the live feed and predictions.  It is used to demonstrate the eye detection function of the project.  The GUI parts of this code were removed when being implemented into the final file.
+
+## Notes
+Dataset and model file not included due to file size limitations.
